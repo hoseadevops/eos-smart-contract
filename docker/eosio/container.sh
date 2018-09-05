@@ -58,8 +58,20 @@ function cli()
 
 _init_contract()
 {
-  _open_un_lock_wallet
-  run_cmd "sh eos.sh cli 'set contract eosio $project_docker_persistent_dir/contracts/eosio.bios -x 1000s -p eosio@active'"
-  #_open_un_lock_wallet
-  #run_cmd "sh eos.sh cli 'set contract dev.token $project_docker_persistent_dir/contracts/eosio.token -x 1000s -p dev.token@active'"
+    _open_un_lock_wallet
+    run_cmd "sh eos.sh cli 'set contract eosio.token $project_docker_persistent_dir/contracts/eosio.token -x 1000s  -p eosio.token@active'"
+    _open_un_lock_wallet
+    run_cmd "sh eos.sh cli 'set contract eosio.msig $project_docker_persistent_dir/contracts/eosio.msig -x 1000s  -p eosio.msig@active'"
+
+    #run_cmd "sh eos.sh cli 'cleos push action eosio.token create '[ "eosio", "10000000000.0000 SYS" ]' -p eosio.token'"
+    #run_cmd "sh eos.sh cli 'cleos push action eosio.token issue  '[ "eosio", "1000000000.0000 SYS", "memo" ]' -p eosio'"
+
+    _open_un_lock_wallet
+    run_cmd "sh eos.sh cli 'set contract eosio $project_docker_persistent_dir/contracts/eosio.bios -x 1000s  -p eosio@active'"
+
+#    _open_un_lock_wallet
+#    run_cmd "sh eos.sh cli 'set contract eosio $project_docker_persistent_dir/contracts/eosio.system -x 1000s  -p eosio@active' --max-transaction-time=1000"
+
+#    run_cmd "sh eos.sh cli 'push action eosio setpriv '["eosio.msig", 1]' -p eosio@active'"
+
 }

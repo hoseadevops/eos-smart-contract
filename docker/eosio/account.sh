@@ -12,12 +12,11 @@ function _init_account()
 {
   _open_un_lock_wallet
 
-  _account_create 3 $developer_name
-  _account_create 3 dev.token
+  _account_create 30 $developer_name
 
-  _account_create 6 test
-  _account_create 9 test.other
+  _account_create 3 eosio.token
+  _account_create 3 eosio.msig
 
-  _account_create 6 call
-  _account_create 9 call.other
+  _account_create 27 test
+  _account_create 24 call.other
 }
