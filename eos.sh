@@ -102,14 +102,8 @@ cat <<EOF
         restart
         clean
 
-        cpp
-        cli
 
         open_unlock_wallet
-        key_create
-
-        deploy
-
 EOF
 }
 
