@@ -39,7 +39,7 @@ source $project_docker_path/eosio/container.sh
 source $project_docker_path/eosio/wallet.sh
 source $project_docker_path/eosio/account.sh
 source $project_docker_path/eosio/contract.sh
-
+source $project_test_dir/case.sh
 
 function assert()
 {
@@ -53,8 +53,18 @@ function assert()
 
 function deploy()
 {
+    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JioEXzAEm7yXwu6NMp3meB1P4s4im2XX3ZcC1EC5LwHXo69xYS"
+    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JHo6cvEc78EGGcEiMMfNDiTfmeEbUFvcLEnvD8EYvwzcu8XFuW"
 
+    sh eos.sh cli "system newaccount eosio eosdactokena EOS7FuoE7h4Ruk3RkWXxNXAvhBnp7KSkq3g2NpYnLJpvtdPpXK3v8 --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer"
+    sh eos.sh cli "system newaccount eosio eosdactokenb EOS4xowXCvVTzGLr5rgGufqCrhnj7yGxsHfoMUVD4eRChXRsZzu3S --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer"
+
+    sh eos.sh cli "transfer eosio eosdactokena \"1000 SYS\""
+    sh eos.sh cli "transfer eosio eosdactokenb \"1000 SYS\""
+
+    sh eos.sh cli "set contract eosdactokena ./contracts/eosdactoken --abi eosdactoken.abi -p eosdactokena@active"
 }
+
 
 function help()
 {
@@ -63,8 +73,8 @@ cat <<EOF
 
         Valid options are:
 
-        restart
-        clean
+        deploy
+
 
 
         open_unlock_wallet
@@ -72,6 +82,6 @@ EOF
 }
 
 action=${1:-help}
-ALL_COMMANDS="build restart clean cpp cli deploy key_create send_cmd_to_eos_container open_unlock_wallet key_create get_keosd_ip"
+ALL_COMMANDS="deploy restart clean cpp cli deploy key_create send_cmd_to_eos_container open_unlock_wallet key_create get_keosd_ip"
 list_contains ALL_COMMANDS "$action" || action=help
 $action "$@"
