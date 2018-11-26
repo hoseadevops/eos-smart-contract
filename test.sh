@@ -62,9 +62,9 @@ function assert()
 
 function create_account()
 {
-#    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JioEXzAEm7yXwu6NMp3meB1P4s4im2XX3ZcC1EC5LwHXo69xYS"
-#    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JHo6cvEc78EGGcEiMMfNDiTfmeEbUFvcLEnvD8EYvwzcu8XFuW"
-#    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5K86iZz9h8jwgGDttMPcHqFHHru5ueqnfDs5fVSHfm8bJt8PjK6"
+    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JioEXzAEm7yXwu6NMp3meB1P4s4im2XX3ZcC1EC5LwHXo69xYS"
+    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JHo6cvEc78EGGcEiMMfNDiTfmeEbUFvcLEnvD8EYvwzcu8XFuW"
+    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5K86iZz9h8jwgGDttMPcHqFHHru5ueqnfDs5fVSHfm8bJt8PjK6"
 
     sh eos.sh cli "system newaccount eosio eosdactokena EOS7FuoE7h4Ruk3RkWXxNXAvhBnp7KSkq3g2NpYnLJpvtdPpXK3v8 --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer -x 2000"
     sh eos.sh cli "system newaccount eosio eosdactokenb EOS4xowXCvVTzGLr5rgGufqCrhnj7yGxsHfoMUVD4eRChXRsZzu3S --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer -x 2000"
@@ -83,13 +83,13 @@ function deploy()
 
 function run()
 {
-    sh eos.sh restart
-    sleep 1s
-    sh test.sh deploy
+#    sh eos.sh restart
 #    sleep 1s
-#    create_currency
-#    issue_currency
-#    create_lock_currency
+#    sh test.sh deploy
+#    sleep 1s
+    create_currency
+    issue_currency
+    create_lock_currency
 }
 
 function help()

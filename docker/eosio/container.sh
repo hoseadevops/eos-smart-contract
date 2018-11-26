@@ -120,7 +120,7 @@ function _build()
     sh eos.sh cli "set contract eosio ./docker/persistent/contracts/eosio.system/ -x 2000s -p eosio@active"
     sleep 1s
     # Deploy eosio.wrap
-    # sh test.sh cli "wallet import -n hexing_wallet --private-key 5J3JRDhf4JNhzzjEZAsQEgtVuqvsPPdZv4Tm6SjMRx1ZqToaray"
+    sh test.sh cli "wallet import -n hexing_wallet --private-key 5J3JRDhf4JNhzzjEZAsQEgtVuqvsPPdZv4Tm6SjMRx1ZqToaray"
     sh eos.sh cli "system newaccount eosio eosio.wrap EOS7LpGN1Qz5AbCJmsHzhG7sWEGd9mwhTXWmrYXqxhTknY2fvHQ1A --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer"
     sh eos.sh cli "push action eosio setpriv '[\"eosio.wrap\", 1]' -p eosio@active"
     sh eos.sh cli "set contract eosio.wrap ./docker/persistent/contracts/eosio.sudo/"
