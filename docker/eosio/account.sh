@@ -16,11 +16,14 @@ function _init_account()
   # system
   _account_create 4 eosio.token
   _account_create 6 eosio.msig
+  sleep 1s
   _account_create 8 eosio.bpay
   _account_create 10 eosio.names
   _account_create 12 eosio.ram
+  sleep 1s
   _account_create 14 eosio.ramfee
   _account_create 16 eosio.saving
   _account_create 18 eosio.stake
   _account_create 20 eosio.vpay
+  sleep 1s
 }

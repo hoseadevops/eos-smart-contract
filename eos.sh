@@ -108,6 +108,6 @@ EOF
 }
 
 action=${1:-help}
-ALL_COMMANDS="run restart clean cpp cli deploy key_create send_cmd_to_eos_container open_unlock_wallet key_create get_keosd_ip"
+ALL_COMMANDS="run cli_test restart clean cpp cli deploy key_create send_cmd_to_eos_container open_unlock_wallet key_create get_keosd_ip"
 list_contains ALL_COMMANDS "$action" || action=help
 $action "$@"

@@ -89,11 +89,11 @@ function _open_un_lock_wallet()
     echo "${name} wallet does not exist."
     exit;
   else
-    run_cmd "sh eos.sh cli 'wallet open -n $name'"
+    sh eos.sh cli "wallet open -n $name" "isLogFalse"
     local pwd=$(_get_password)
 
 
-    sh eos.sh cli "wallet unlock -n $name --password $pwd"
+    sh eos.sh cli "wallet unlock -n $name --password $pwd" "isLogFalse"
   fi
 }
 
