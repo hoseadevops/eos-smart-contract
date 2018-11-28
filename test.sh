@@ -62,9 +62,9 @@ function assert()
 
 function create_account()
 {
-    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JioEXzAEm7yXwu6NMp3meB1P4s4im2XX3ZcC1EC5LwHXo69xYS"
-    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JHo6cvEc78EGGcEiMMfNDiTfmeEbUFvcLEnvD8EYvwzcu8XFuW"
-    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5K86iZz9h8jwgGDttMPcHqFHHru5ueqnfDs5fVSHfm8bJt8PjK6"
+#    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JioEXzAEm7yXwu6NMp3meB1P4s4im2XX3ZcC1EC5LwHXo69xYS"
+#    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5JHo6cvEc78EGGcEiMMfNDiTfmeEbUFvcLEnvD8EYvwzcu8XFuW"
+#    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5K86iZz9h8jwgGDttMPcHqFHHru5ueqnfDs5fVSHfm8bJt8PjK6"
 
     sh eos.sh cli "system newaccount eosio eosdactokena EOS7FuoE7h4Ruk3RkWXxNXAvhBnp7KSkq3g2NpYnLJpvtdPpXK3v8 --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer -x 2000"
     sh eos.sh cli "system newaccount eosio eosdactokenb EOS4xowXCvVTzGLr5rgGufqCrhnj7yGxsHfoMUVD4eRChXRsZzu3S --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer -x 2000"
@@ -73,8 +73,16 @@ function create_account()
     sh eos.sh cli "transfer eosio eosdactokena \"1000 SYS\""
     sh eos.sh cli "transfer eosio eosdactokenb \"1000 SYS\""
     sh eos.sh cli "transfer eosio eosdactokenc \"1000 SYS\""
+}
+
+function _create_account()
+{
+    sh eos.sh cli "wallet import -n hexing_wallet --private-key 5Jbf3f26fz4HNWXVAd3TMYHnC68uu4PtkMnbgUa5mdCWmgu47sR"
+    sh eos.sh cli "system newaccount eosio eosdactoken EOS7rjn3r52PYd2ppkVEKYvy6oRDP9MZsJUPB2MStrak8LS36pnTZ --stake-cpu \"50 SYS\" --stake-net \"10 SYS\" --buy-ram-kbytes 5000 --transfer -x 2000"
+    sh eos.sh cli "transfer eosio eosdactoken \"1000 SYS\""
 
 }
+
 function deploy()
 {
     create_account
@@ -83,13 +91,17 @@ function deploy()
 
 function run()
 {
-#    sh eos.sh restart
-#    sleep 1s
-#    sh test.sh deploy
-#    sleep 1s
+    sh eos.sh restart
+    sh test.sh deploy
     create_currency
     issue_currency
     create_lock_currency
+    transfer_some_tokens
+    unlock_tokens
+    burn_tokens
+    newmemterms
+    member_reg
+    memberunreg
 }
 
 function help()
